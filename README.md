@@ -62,10 +62,11 @@ PORT=5001
 
 # Start the backend server
 npm run dev
-
-### Frontend
+```
 
 ```bash
+### Frontend
+
 # Navigate to frontend folder
 cd frontend
 
