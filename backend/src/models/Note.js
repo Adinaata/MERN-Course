@@ -1,4 +1,5 @@
-import mongoose, { mongo } from "mongoose";
+import mongoose from "mongoose";
+
 
 // 1. create schema
 // 2. create model based off that schema
@@ -19,6 +20,4 @@ const noteSchema = new mongoose.Schema({
 )
 
 
-const Note = mongoose.model("Note", noteSchema)
-
-export default Note
+export const Note = mongoose.model("Note", noteSchema)

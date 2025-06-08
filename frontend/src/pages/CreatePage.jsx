@@ -9,6 +9,7 @@ const CreatePage = () => {
   const [content, setContent] = useState("");
 
   const navigate = useNavigate();
+  const token = localStorage.getItem("token");
 
   const handleNewNote = async (e) => {
     e.preventDefault();
@@ -17,10 +18,18 @@ const CreatePage = () => {
       return toast.error("All field are required");
     }
     try {
-      const res = await axios.post("http://localhost:5001/api/notes", {
-        title,
-        content,
-      });
+      const res = await axios.post(
+        "http://localhost:5001/api/notes",
+        {
+          title,
+          content,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
       console.log(res.data);
       toast.success("Notes created");
       navigate("/");

@@ -5,8 +5,13 @@ import { Link } from "react-router";
 
 const NoteCard = ({ _id, title, content, onDelete }) => {
   const handleDelete = async () => {
+    const token = localStorage.getItem("token");
     try {
-      const res = await axios.delete(`http://localhost:5001/api/notes/${_id}`);
+      const res = await axios.delete(`http://localhost:5001/api/notes/${_id}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
       console.log(res.data, "deleted");
       toast.success("Note deleted!");
       onDelete?.(); //refresh state di parent

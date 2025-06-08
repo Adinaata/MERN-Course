@@ -9,11 +9,15 @@ const EditPage = () => {
   const [content, setContent] = useState("");
 
   const navigate = useNavigate();
-
+  const token = localStorage.getItem("token");
   useEffect(() => {
     const fetchNote = async () => {
       try {
-        const res = await axios.get(`http://localhost:5001/api/notes/${id}`);
+        const res = await axios.get(`http://localhost:5001/api/notes/${id}`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
         setTitle(res.data.title);
         setContent(res.data.content);
       } catch (error) {
@@ -28,10 +32,18 @@ const EditPage = () => {
     e.preventDefault();
 
     try {
-      await axios.put(`http://localhost:5001/api/notes/${id}`, {
-        title,
-        content,
-      });
+      await axios.put(
+        `http://localhost:5001/api/notes/${id}`,
+        {
+          title,
+          content,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
       toast.success("Note updated");
       navigate("/");
     } catch (error) {

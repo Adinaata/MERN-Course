@@ -1,7 +1,8 @@
-import Note from "../models/Note.js"
+import {Note} from "../models/Note.js"
 
 export const getAllNotes =  async(req,res) => {
 try {
+    // const userId = req.user.id // from token
     const notes = await Note.find().sort({createdAt: -1}) // -1 will sort in descending order (newest first)
     res.status(200).json(notes)
 } catch (error) {

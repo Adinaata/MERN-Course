@@ -11,11 +11,17 @@ const HomePage = () => {
   const [notes, setNotes] = useState([]);
   const [loading, setLoading] = useState(false);
 
+  const token = localStorage.getItem("token");
+
   useEffect(() => {
     const fetchNotes = async () => {
       setLoading(true);
       try {
-        const res = await axios.get("http://localhost:5001/api/notes");
+        const res = await axios.get("http://localhost:5001/api/notes", {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
         console.log(res.data);
         setNotes(res.data);
         setIsRateLimited(false);
