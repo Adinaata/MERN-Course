@@ -64,9 +64,9 @@ PORT=5001
 npm run dev
 ```
 
-```bash
 ### Frontend
 
+```bash
 # Navigate to frontend folder
 cd frontend
 
