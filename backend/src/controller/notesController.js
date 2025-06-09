@@ -26,8 +26,8 @@ try {
 
 export const createNote = async(req,res) => {
     try {
-        const {title, content} = req.body
-        const note = new Note({title: title, content: content})
+        const {title, content, img} = req.body
+        const note = new Note({title: title, content: content, img: img})
         
         const savedNote = await note.save()
         res.status(201).json(savedNote)
@@ -39,8 +39,8 @@ export const createNote = async(req,res) => {
 
 export const updateNote = async(req,res) => {
     try {
-        const {title, content} = req.body
-        const updatedNote = await Note.findByIdAndUpdate(req.params.id, {title, content}, 
+        const {title, content, img} = req.body
+        const updatedNote = await Note.findByIdAndUpdate(req.params.id, {title, content, img}, 
         {
             new: true,
         })

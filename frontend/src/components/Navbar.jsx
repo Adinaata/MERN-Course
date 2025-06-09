@@ -1,12 +1,20 @@
 import { DiamondPlus } from "lucide-react";
 import { Link } from "react-router";
 import { useNavigate } from "react-router";
+import useAuthStore from "../Store/useAuthStore";
+import toast from "react-hot-toast";
 
 const Navbar = () => {
   const navigate = useNavigate();
+  const { clearToken } = useAuthStore();
   const handleLogout = () => {
-    localStorage.removeItem("token");
-    navigate("/login");
+    try {
+      clearToken();
+      toast.success("Log out success");
+      navigate("/login");
+    } catch (error) {
+      console.log("error in log out", error);
+    }
   };
 
   return (

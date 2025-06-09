@@ -20,6 +20,11 @@ A practice project using the **MERN Stack** (MongoDB, Express, React, Node.js) w
 - 🔄 Protected Routes using JWT
 - 📦 Persistent login using `localStorage`
 
+# 09-June
+
+- adding Global state management with Zustand
+- adding image form
+
 ---
 
 ## 🧰 Tech Stack

@@ -12,3 +12,10 @@ backend/node_modules/
 # OS / Editor files
 .DS_Store
 .vscode/
+
+# Build output
+frontend/build/
+frontend/dist/
+frontend/.next/
+backend/build/
+backend/dist/

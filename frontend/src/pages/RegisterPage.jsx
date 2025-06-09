@@ -22,6 +22,7 @@ const RegisterPage = () => {
         return toast.error("Username and password cannot be empty");
       }
 
+      toast.success("User Created");
       navigate("/login");
     } catch (error) {
       console.log(error);

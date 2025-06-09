@@ -13,6 +13,10 @@ const noteSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    img: {
+        type: String,
+        required: true
+    }
 },
     {
         timestamps: true //createdAt and updatedAt create automatically by mongodb

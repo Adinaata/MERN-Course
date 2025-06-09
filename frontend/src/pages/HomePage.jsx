@@ -5,18 +5,19 @@ import { useEffect } from "react";
 import axios from "axios";
 import toast from "react-hot-toast";
 import NoteCard from "../components/NoteCard";
+import useAuthStore from "../Store/useAuthStore";
 
 const HomePage = () => {
   const [isRateLimited, setIsRateLimited] = useState(false);
   const [notes, setNotes] = useState([]);
-  const [loading, setLoading] = useState(false);
+  // const [loading, setLoading] = useState(false);
 
-  const token = localStorage.getItem("token");
+  const { token, setLoading, loading } = useAuthStore();
 
   useEffect(() => {
     const fetchNotes = async () => {
-      setLoading(true);
       try {
+        setLoading(true);
         const res = await axios.get("http://localhost:5001/api/notes", {
           headers: {
             Authorization: `Bearer ${token}`,

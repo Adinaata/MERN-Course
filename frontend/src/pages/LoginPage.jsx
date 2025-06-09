@@ -2,12 +2,14 @@ import axios from "axios";
 import { useNavigate } from "react-router";
 import { useState } from "react";
 import { Link } from "react-router";
+import useAuthStore from "../Store/useAuthStore";
+import toast from "react-hot-toast";
 
 const LoginPage = () => {
   const navigate = useNavigate();
-  const [errorMsg, setErrorMsg] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const { setToken } = useAuthStore();
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -18,11 +20,12 @@ const LoginPage = () => {
         password,
       });
       const token = res.data.token;
-      localStorage.setItem("token", token); //saving token
+      setToken(token); //saving token
+      toast.success("Success Login");
       navigate("/");
     } catch (error) {
       console.error(error);
-      setErrorMsg(error.response?.data?.message || "login failed");
+      toast.error(error.response?.data?.message);
     }
   };
 
@@ -58,8 +61,6 @@ const LoginPage = () => {
             </button>
           </div>
         </form>
-
-        {errorMsg && <p className="text-red-500">{errorMsg}</p>}
       </div>
     </div>
   );
